@@ -1,16 +1,9 @@
-import { Inter, Outfit } from "next/font/google";
+import { Cormorant, Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-});
+const cormorant = Cormorant({ subsets: ["latin"], weight: ['400', '500', '600', '700'] });
+const montserrat = Montserrat({ subsets: ["latin"], weight: ['300', '400', '500', '600', '700'] });
 
 export const metadata = {
   title: "Tripurari Tiles and Marble | Bhurkunda, Jharkhand",
@@ -20,7 +13,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${outfit.variable} antialiased`}>
+      <head>
+        <style>{`
+          :root {
+            --font-heading: ${cormorant.style.fontFamily};
+            --font-body: ${montserrat.style.fontFamily};
+          }
+        `}</style>
+      </head>
+      <body className={montserrat.className}>
         <Navbar />
         {children}
       </body>
